@@ -170,7 +170,7 @@ previously used version."
 (defun nvm-use-for-buffer ()
   "Activate Node based on an .nvmrc for the current file.
 If buffer is not visiting a file, do nothing."
-  (when buffer-file-name
+  (when (or buffer-file-name (string-match "\`\*magit" (buffer-name)))
     (condition-case err
         (nvm-use-for buffer-file-name)
       (error (message "%s" err)))))
